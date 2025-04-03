@@ -75,7 +75,7 @@ abstract class FloatingSearchBarTransition {
 
   @override
   // ignore: hash_and_equals
-  bool operator ==(dynamic other) => other.runtimeType == runtimeType;
+  bool operator ==(Object other) => other.runtimeType == runtimeType;
 }
 
 /// A [FloatingSearchBarTransition]
@@ -249,7 +249,7 @@ abstract class OverlayingFloatingSearchBarTransition
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is OverlayingFloatingSearchBarTransition &&

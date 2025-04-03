@@ -530,15 +530,6 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
   void open() => isOpen = true;
   void close() => isOpen = false;
 
-  Future<bool> _onPop() async {
-    if (isOpen) {
-      close();
-      return false;
-    }
-
-    return true;
-  }
-
   void _onClosed() {
     _offset = 0.0;
 
@@ -602,10 +593,21 @@ class FloatingSearchBarState extends ImplicitlyAnimatedWidgetState<
     final searchBar = SizedBox.expand(
       child: isAvailableSwipeBack
           ? _getSearchBarWidget()
-          : WillPopScope(
-              onWillPop: _onPop,
-              child: _getSearchBarWidget(),
-            ),
+          : PopScope(
+      onPopInvokedWithResult: (b, popKind) async {
+        if (isOpen) {
+          close();
+        }
+        return ; // Allow the pop action
+      },
+       child: _getSearchBarWidget(),
+      
+      ) 
+          
+          // WillPopScope(
+          //     onWillPop: _onPop,
+          //     child: _getSearchBarWidget(),
+          //   ),
     );
 
     if (widget.body != null) {

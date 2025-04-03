@@ -567,8 +567,8 @@ class FloatingSearchAppBarState extends ImplicitlyAnimatedWidgetState<
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                backgroundColor.withOpacity(0.0),
-                backgroundColor.withOpacity(1.0),
+                backgroundColor.withAlpha(0),
+                backgroundColor.withAlpha(255),
               ],
             ),
           ),
